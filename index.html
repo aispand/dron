@@ -279,8 +279,6 @@
 
       // --- 3. Restricció de Caràcters (Lletres, números i espais) ---
       inputNom.addEventListener('input', function() {
-          // Regex: permet lletres (a-z), accents catalans/castellans, números i espais.
-          // Elimina qualsevol altra cosa automàticament.
           this.value = this.value.replace(/[^a-zA-Z0-9\sàèòéíóúÀÈÒÉÍÓÚïüÏÜçÇ·'-]/g, '');
       });
 
@@ -320,7 +318,6 @@
         btnEnviar.innerText = "Comprovant nom...";
         
         try {
-            // AFEGIT TIMESTAMP (&t=...) PER EVITAR LA CACHE I QUE NO DEIXI DE FUNCIONAR
             const timestamp = Date.now();
             
             // 1. Verificació Nom (GET)
@@ -352,7 +349,8 @@
 
         } catch (error) {
             console.error(error);
-            missatge.innerText = "❌ Error de connexió: " + error.message;
+            // AQUI EL CANVI SOL·LICITAT:
+            missatge.innerText = "❌ Error de connexió, torna-ho a intentar";
             missatge.style.display = 'block';
             missatge.style.color = 'var(--error-red)';
             missatge.style.backgroundColor = '#FED7D7';
