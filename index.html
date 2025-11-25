@@ -612,7 +612,13 @@
   function descarregarPDFManual() {
       if (pdfDocGlobal) {
           pdfDocGlobal.save("Rebut-Concurs-IA.pdf");
-          setTimeout(() => { location.reload(); }, 1000);
+          
+          // Transformar el botó
+          const btn = document.querySelector('.btn-download');
+          btn.innerHTML = "🔄 Tanca i torna a l'inici";
+          btn.style.backgroundColor = "#4a5568"; // Change color to indicate change
+          btn.onclick = function() { location.reload(); };
+          
       } else {
           alert("Error generant PDF.");
       }
