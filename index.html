@@ -376,7 +376,6 @@
     </div>
 </div>
 
-<!-- MODAL REBUT -->
 <div id="modalRebut" class="modal-overlay">
     <div class="modal-content" style="max-width: 500px;">
         <div class="modal-header" style="background: #f0fff4;">
@@ -595,6 +594,12 @@
     const basesElement = document.getElementById('text-bases-imprimir');
     const textBases = basesElement.innerText; 
     
+    // Get name from input
+    const nomInput = document.getElementById('nom_ia');
+    // Filename with proposal name, sanitized.
+    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/\s+/g, '_') : "Proposta";
+    pdfDocGlobal.currentFilename = `Rebut_IA_${nomNet}.pdf`;
+
     const lines = doc.splitTextToSize(textBases, contentWidth);
     
     // Paginació intel·ligent
@@ -611,7 +616,8 @@
 
   function descarregarPDFManual() {
       if (pdfDocGlobal) {
-          pdfDocGlobal.save("Rebut-Concurs-IA.pdf");
+          const filename = pdfDocGlobal.currentFilename || "Rebut-Concurs-IA.pdf";
+          pdfDocGlobal.save(filename);
           
           // Transformar el botó
           const btn = document.querySelector('.btn-download');
