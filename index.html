@@ -392,10 +392,10 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn-download" onclick="descarregarPDFManual()">
+            <!-- El botó canviarà de funció segons l'estat -->
+            <button type="button" class="btn-download" onclick="gestionarBotodDescarrega()">
                 📥 DESCARREGA EL REBUT PDF
             </button>
-            <!-- Botó Tancar eliminat perquè l'usuari faci l'acció de descarregar i reiniciar -->
         </div>
     </div>
 </div>
@@ -622,7 +622,7 @@
     
     // Get name from input
     const nomInput = document.getElementById('nom_ia');
-    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/\s+/g, '_') : "Proposta";
+    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/[^a-zA-Z0-9]/g, '_') : "Proposta";
     pdfDocGlobal.currentFilename = `Rebut_IA_${nomNet}.pdf`;
 
     const lines = doc.splitTextToSize(textBases, contentWidth);
@@ -646,26 +646,25 @@
           if (pdfDocGlobal) {
               const filename = pdfDocGlobal.currentFilename || "Rebut-Concurs-IA.pdf";
               
-              // ESTRATÈGIA BASE64 (OPCIÓ B) PER MÒBILS/SHAREPOINT
-              // Funciona millor en WebViews que el Blob clàssic
+              // ESTRATÈGIA MÒBIL/SHAREPOINT APP: SHARE API O FALLBACK
               const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-              if (isMobile) {
-                  // Generar Data URI String
-                  const dataUri = pdfDocGlobal.output('datauristring');
+              if (isMobile && navigator.share && navigator.canShare) {
+                  // Mètode modern (Share API) per mòbils
+                  const blob = pdfDocGlobal.output('blob');
+                  const file = new File([blob], filename, { type: "application/pdf" });
                   
-                  // Intentem obrir una finestra nova amb el contingut
-                  // Nota: Alguns navegadors molt estrictes poden bloquejar això, 
-                  // però és la millor opció tècnica sense backend real.
-                  const win = window.open();
-                  if (win) {
-                      win.document.write('<iframe src="' + dataUri + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                  if (navigator.canShare({ files: [file] })) {
+                      navigator.share({
+                          files: [file],
+                          title: 'Rebut Concurs IA',
+                          text: 'Aquí tens el teu justificant.'
+                      }).catch((error) => console.log('Compartició cancel·lada', error));
                   } else {
-                      // Fallback si bloqueja popups
-                      window.location.href = dataUri; 
+                      pdfDocGlobal.save(filename); // Fallback
                   }
               } else {
-                  // Mètode clàssic PC
+                  // Mètode clàssic (PC / Android antic)
                   pdfDocGlobal.save(filename);
               }
 
