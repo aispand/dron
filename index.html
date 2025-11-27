@@ -214,7 +214,6 @@
   .success-icon { font-size: 50px; margin-bottom: 15px; display: block; }
   .btn-download { background: var(--success-green); margin-bottom: 10px; }
   .btn-download:hover { background: #22543d; }
-  /* Botó tancar eliminat o ocultat segons nova petició */
 
   #missatgeEstat { text-align: center; margin-top: 15px; font-weight: bold; padding: 15px; border-radius: 8px; }
 
@@ -391,7 +390,7 @@
                 </p>
             </div>
             
-            <!-- Espai per a l'avís d'Opció A -->
+            <!-- Espai per a l'avís d'Opció A (si es descarrega automàticament) -->
             <div id="downloadInfo" style="display:none; margin-top: 15px; padding: 10px; background-color: #f0fdf4; border-radius: 8px; color: #22543d; font-weight: 600; font-size: 0.9em;">
             </div>
         </div>
@@ -409,7 +408,7 @@
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFqJ4_51A-g1qJCjluCYENoaFog2kyCoSODSosX2BoSpBg_EUZyPjKDYubwModo4Ag8A/exec"; 
 
   // Variable per controlar l'estat del botó final
-  let estatBotoFinal = "descarregar"; // 'descarregar' o 'tancar'
+  let estatBotoFinal = "descarregar"; 
 
   document.addEventListener("DOMContentLoaded", () => {
       const checkBases = document.getElementById('accepto_bases');
@@ -496,21 +495,20 @@
         btnEnviar.innerText = "COMPROVANT EL NOM...";
         
         try {
+            const timestamp = Date.now();
+            
             // Check duplicats
-            const checkResponse = await fetch(`${GOOGLE_SCRIPT_URL}?check=${encodeURIComponent(nom)}&t=${Date.now()}`);
+            const checkResponse = await fetch(`${GOOGLE_SCRIPT_URL}?check=${encodeURIComponent(nom)}&t=${timestamp}`);
             const checkResult = await checkResponse.json();
 
             if (checkResult.exists) {
                 inputNom.classList.add('error');
                 errorNom.style.display = 'block';
-                
-                // Diferenciem el missatge segons la raó
                 if (checkResult.reason === "inappropriate") {
                     errorNom.innerText = "⚠️ Aquest nom conté paraules no permeses.";
                 } else {
                     errorNom.innerText = "⚠️ Aquest nom ja s'ha proposat! Si us plau, tria'n un altre.";
                 }
-
                 btnEnviar.disabled = false;
                 btnEnviar.innerText = "ENVIA LA PROPOSTA";
                 return; 
@@ -518,7 +516,7 @@
 
             // Save
             btnEnviar.innerText = "Guardant...";
-            const urlGuardar = `${GOOGLE_SCRIPT_URL}?nom=${encodeURIComponent(nom)}&codi=${encodeURIComponent(codi)}&t=${Date.now()}`;
+            const urlGuardar = `${GOOGLE_SCRIPT_URL}?nom=${encodeURIComponent(nom)}&codi=${encodeURIComponent(codi)}&t=${timestamp}`;
             const saveResponse = await fetch(urlGuardar);
             const saveResult = await saveResponse.json();
 
@@ -527,7 +525,6 @@
                 await prepararPDF();
                 obrirModal('modalRebut');
                 
-                // Reset de l'estat del botó final
                 estatBotoFinal = "descarregar";
                 const btn = document.querySelector('.btn-download');
                 btn.innerHTML = "📥 DESCARREGA EL REBUT PDF";
@@ -572,7 +569,6 @@
     const { jsPDF } = window.jspdf;
     const elementFormulari = document.getElementById('targeta-formulari');
     
-    // 1. Scroll top
     window.scrollTo(0,0);
 
     elementFormulari.classList.add('clean-capture');
@@ -607,23 +603,10 @@
     doc.text(avisText, pageWidth / 2, 63, { align: 'center', maxWidth: 160 });
 
     const imgProps = doc.getImageProperties(imgFormulari);
-    
-    // SCALING LOGIC
-    const yPosImage = 75; 
-    const availableHeight = pageHeight - yPosImage - 25; 
+    const pdfImgHeight = (imgProps.height * contentWidth) / imgProps.width;
+    doc.addImage(imgFormulari, 'PNG', margin, 70, contentWidth, pdfImgHeight);
 
-    let pdfImgWidth = contentWidth;
-    let pdfImgHeight = (imgProps.height * pdfImgWidth) / imgProps.width;
-
-    if (pdfImgHeight > availableHeight) {
-        pdfImgHeight = availableHeight;
-        pdfImgWidth = (imgProps.width * pdfImgHeight) / imgProps.height;
-    }
-
-    const xPosImage = (pageWidth - pdfImgWidth) / 2;
-    doc.addImage(imgFormulari, 'PNG', xPosImage, yPosImage, pdfImgWidth, pdfImgHeight);
-
-    let yPos = yPosImage + pdfImgHeight + 15;
+    let yPos = 70 + pdfImgHeight + 15;
     doc.setDrawColor(200);
     doc.line(margin, yPos, pageWidth - margin, yPos);
     yPos += 10;
@@ -640,7 +623,6 @@
     const basesElement = document.getElementById('text-bases-imprimir');
     const textBases = basesElement.innerText; 
     
-    // Get name from input
     const nomInput = document.getElementById('nom_ia');
     const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/[^a-zA-Z0-9]/g, '_') : "Proposta";
     pdfDocGlobal.currentFilename = `Rebut_IA_${nomNet}.pdf`;
@@ -658,10 +640,9 @@
     }
   }
 
-  // FUNCIÓ GESTIÓ DEL BOTÓ FINAL (OPCIÓ A: COMPARTIR + MISSATGE AVIS)
+  // FUNCIÓ GESTIÓ DEL BOTÓ FINAL (Opció A - Web Share + Fallback Missatge)
   async function gestionarBotodDescarrega() {
       if (estatBotoFinal === "descarregar") {
-          // 1. DESCARREGAR
           if (pdfDocGlobal) {
               const filename = pdfDocGlobal.currentFilename || "Rebut-Concurs-IA.pdf";
               
@@ -683,22 +664,18 @@
                       }
                   } catch (err) {
                       console.log('Compartició cancel·lada o fallida', err);
-                      // Si l'usuari cancel·la el menú, no considerem que hagi fallat la tècnica, 
-                      // però si falla tècnicament, saltem al fallback.
                   }
               }
 
-              // INTENT 2: DESCARREGA DIRECTA (Fallback per PC o si Share falla)
+              // INTENT 2: DESCARREGA DIRECTA (Fallback)
               if (!compartit) {
                   pdfDocGlobal.save(filename);
-                  
-                  // AVIS OPCIÓ A: Informar si s'ha descarregat en silenci (típic en Android/SharePoint)
+                  // Avis per a Android/SharePoint si la descàrrega és silenciosa
                   const divInfo = document.getElementById('downloadInfo');
                   divInfo.innerText = "✅ El fitxer s'ha guardat a la teva carpeta de Descàrregues.";
                   divInfo.style.display = 'block';
               }
 
-              // 2. CANVIAR ESTAT BOTÓ
               const btn = document.querySelector('.btn-download');
               btn.innerHTML = "🔄 Tanca i torna a l'inici";
               btn.style.backgroundColor = "#4a5568"; 
@@ -707,7 +684,6 @@
               alert("Error: No s'ha generat el PDF.");
           }
       } else {
-          // 3. RECARREGAR (TANCAR)
           location.reload();
       }
   }
@@ -716,7 +692,7 @@
   window.obrirModal = function(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
   window.tancarModalBoto = function(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
   window.tancarModal = function(e, id) { if (id === 'modalRebut') return; if (e.target.id === id) tancarModalBoto(id); }
-  window.descarregarPDFManual = gestionarBotodDescarrega; // Enllacem la nova funció
+  window.descarregarPDFManual = gestionarBotodDescarrega; 
 </script>
 
 </body>
