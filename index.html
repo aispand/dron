@@ -353,8 +353,8 @@
                 <li><strong>Innovació:</strong> Caràcter tecnològic i modern.</li>
                 <li><strong>Impacte:</strong> Brevetat, facilitat de record i potència comunicativa.</li>
                 <li><strong>Creativitat i Abstracció:</strong> Es valorarà positivament la creació de nous conceptes. Es penalitzaran o descartaran els noms propis de persona (antropònims) per afavorir l'originalitat.</li>
+                <li><strong>Desempat:</strong> En cas d'empat entre diverses candidatures per entrar a la final, els Cònsols votaran el desempat amb la finalitat que hi hagi únicament 10 propostes finalistes.</li>
             </ul>
-            <p><strong>Desempat:</strong> En cas d'empat entre diverses candidatures per entrar a la final, els Cònsols votaran el desempat amb la finalitat que hi hagi únicament 10 propostes finalistes.</p>
             <p><strong>FASE 2: Votació Popular (Treballadors)</strong></p>
             <ul>
                 <li>Els 10 finalistes se sotmetran a votació oberta a tots els treballadors qualificats com a participants.</li>
@@ -567,6 +567,9 @@
     const { jsPDF } = window.jspdf;
     const elementFormulari = document.getElementById('targeta-formulari');
     
+    // 1. Scroll top
+    window.scrollTo(0,0);
+
     elementFormulari.classList.add('clean-capture');
     const canvas = await html2canvas(elementFormulari, { scale: 2, backgroundColor: "#ffffff" }); 
     const imgFormulari = canvas.toDataURL('image/png');
@@ -599,10 +602,23 @@
     doc.text(avisText, pageWidth / 2, 63, { align: 'center', maxWidth: 160 });
 
     const imgProps = doc.getImageProperties(imgFormulari);
-    const pdfImgHeight = (imgProps.height * contentWidth) / imgProps.width;
-    doc.addImage(imgFormulari, 'PNG', margin, 70, contentWidth, pdfImgHeight);
+    
+    // SCALING LOGIC (CORREGIDA)
+    const yPosImage = 75; // Marge seguretat
+    const availableHeight = pageHeight - yPosImage - 25; // Buffer inferior
 
-    let yPos = 70 + pdfImgHeight + 15;
+    let pdfImgWidth = contentWidth;
+    let pdfImgHeight = (imgProps.height * pdfImgWidth) / imgProps.width;
+
+    if (pdfImgHeight > availableHeight) {
+        pdfImgHeight = availableHeight;
+        pdfImgWidth = (imgProps.width * pdfImgHeight) / imgProps.height;
+    }
+
+    const xPosImage = (pageWidth - pdfImgWidth) / 2;
+    doc.addImage(imgFormulari, 'PNG', xPosImage, yPosImage, pdfImgWidth, pdfImgHeight);
+
+    let yPos = yPosImage + pdfImgHeight + 15;
     doc.setDrawColor(200);
     doc.line(margin, yPos, pageWidth - margin, yPos);
     yPos += 10;
@@ -619,9 +635,8 @@
     const basesElement = document.getElementById('text-bases-imprimir');
     const textBases = basesElement.innerText; 
     
-    // Get name from input
     const nomInput = document.getElementById('nom_ia');
-    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/\s+/g, '_') : "Proposta";
+    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/[^a-zA-Z0-9]/g, '_') : "Proposta";
     pdfDocGlobal.currentFilename = `Rebut_IA_${nomNet}.pdf`;
 
     const lines = doc.splitTextToSize(textBases, contentWidth);
