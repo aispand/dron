@@ -392,10 +392,10 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn-download" onclick="descarregarPDFManual()">
+            <!-- El botó canviarà de funció segons l'estat -->
+            <button type="button" class="btn-download" onclick="gestionarBotodDescarrega()">
                 📥 DESCARREGA EL REBUT PDF
             </button>
-            <!-- Botó Tancar eliminat perquè l'usuari faci l'acció de descarregar i reiniciar -->
         </div>
     </div>
 </div>
@@ -403,6 +403,9 @@
 <script>
   // *** URL DEFINITIVA ***
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFqJ4_51A-g1qJCjluCYENoaFog2kyCoSODSosX2BoSpBg_EUZyPjKDYubwModo4Ag8A/exec"; 
+
+  // Variable per controlar l'estat del botó final
+  let estatBotoFinal = "descarregar"; // 'descarregar' o 'tancar'
 
   document.addEventListener("DOMContentLoaded", () => {
       const checkBases = document.getElementById('accepto_bases');
@@ -493,7 +496,6 @@
             const checkResponse = await fetch(`${GOOGLE_SCRIPT_URL}?check=${encodeURIComponent(nom)}&t=${Date.now()}`);
             const checkResult = await checkResponse.json();
 
-            // NOU: Gestió de l'error de paraules prohibides
             if (checkResult.exists) {
                 inputNom.classList.add('error');
                 errorNom.style.display = 'block';
@@ -520,9 +522,15 @@
                 btnEnviar.innerText = "Generant PDF...";
                 await prepararPDF();
                 obrirModal('modalRebut');
+                
+                // Reset de l'estat del botó final
+                estatBotoFinal = "descarregar";
+                const btn = document.querySelector('.btn-download');
+                btn.innerHTML = "📥 DESCARREGA EL REBUT PDF";
+                btn.style.backgroundColor = "var(--success-green)";
+                
                 btnEnviar.innerText = "ENVIAT";
             } else {
-                // Si el servidor rebutja el nom (doble check)
                 if (saveResult.message === "Nom inapropiat") {
                     inputNom.classList.add('error');
                     errorNom.innerText = "⚠️ Aquest nom conté paraules no permeses.";
@@ -612,9 +620,9 @@
     const basesElement = document.getElementById('text-bases-imprimir');
     const textBases = basesElement.innerText; 
     
-    // Get name from input
+    // Generar nom fitxer net
     const nomInput = document.getElementById('nom_ia');
-    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/\s+/g, '_') : "Proposta";
+    const nomNet = (nomInput && nomInput.value) ? nomInput.value.trim().replace(/[^a-zA-Z0-9]/g, '_') : "Proposta";
     pdfDocGlobal.currentFilename = `Rebut_IA_${nomNet}.pdf`;
 
     const lines = doc.splitTextToSize(textBases, contentWidth);
@@ -631,19 +639,46 @@
     }
   }
 
-  function descarregarPDFManual() {
-      if (pdfDocGlobal) {
-          const filename = pdfDocGlobal.currentFilename || "Rebut-Concurs-IA.pdf";
-          pdfDocGlobal.save(filename);
-          
-          // Transformar el botó
-          const btn = document.querySelector('.btn-download');
-          btn.innerHTML = "🔄 Tanca i torna a l'inici";
-          btn.style.backgroundColor = "#4a5568"; // Change color to indicate change
-          btn.onclick = function() { location.reload(); };
-          
+  // FUNCIÓ GESTIÓ DEL BOTÓ FINAL
+  function gestionarBotodDescarrega() {
+      if (estatBotoFinal === "descarregar") {
+          // 1. DESCARREGAR
+          if (pdfDocGlobal) {
+              const filename = pdfDocGlobal.currentFilename || "Rebut-Concurs-IA.pdf";
+              
+              // Detecció mòbil per a SharePoint App
+              const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+              if (isMobile && navigator.share && navigator.canShare) {
+                  // Mètode modern (Share API) per mòbils
+                  const blob = pdfDocGlobal.output('blob');
+                  const file = new File([blob], filename, { type: "application/pdf" });
+                  
+                  if (navigator.canShare({ files: [file] })) {
+                      navigator.share({
+                          files: [file],
+                          title: 'Rebut Concurs IA',
+                          text: 'Aquí tens el teu justificant.'
+                      }).catch((error) => console.log('Compartició cancel·lada', error));
+                  } else {
+                      pdfDocGlobal.save(filename); // Fallback
+                  }
+              } else {
+                  // Mètode clàssic (PC / Android antic)
+                  pdfDocGlobal.save(filename);
+              }
+
+              // 2. CANVIAR ESTAT BOTÓ
+              const btn = document.querySelector('.btn-download');
+              btn.innerHTML = "🔄 Tanca i torna a l'inici";
+              btn.style.backgroundColor = "#4a5568"; 
+              estatBotoFinal = "tancar";
+          } else {
+              alert("Error: No s'ha generat el PDF.");
+          }
       } else {
-          alert("Error generant PDF.");
+          // 3. RECARREGAR (TANCAR)
+          location.reload();
       }
   }
 
@@ -651,8 +686,10 @@
   window.obrirModal = function(id) { document.getElementById(id).style.display = 'flex'; document.body.style.overflow = 'hidden'; }
   window.tancarModalBoto = function(id) { document.getElementById(id).style.display = 'none'; document.body.style.overflow = 'auto'; }
   window.tancarModal = function(e, id) { if (id === 'modalRebut') return; if (e.target.id === id) tancarModalBoto(id); }
-  window.descarregarPDFManual = descarregarPDFManual;
+  window.descarregarPDFManual = gestionarBotodDescarrega; // Enllacem la nova funció
 </script>
 
 </body>
 </html>
+
+
