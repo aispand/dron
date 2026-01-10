@@ -2,27 +2,21 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <!-- Configuración para pantalla completa y evitar zoom al tocar -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
-    <!-- Título de la App en el móvil -->
     <title>Neo 2 Cine</title>
 
-    <!-- TRUCO PARA MODO APP (iOS) -->
+    <!-- MODO APP -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Neo 2 Cine">
-
-    <!-- TRUCO PARA MODO APP (Android) -->
-    <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#121212">
 
-    <!-- ICONO INTEGRADO (SVG Dron) -->
+    <!-- ICONO -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' style='background-color:%231E1E1E'%3E%3Cpath fill='%230070D8' d='M448 96c-35.3 0-64 28.7-64 64l0 40.4c-6.8-5.3-14.3-10-22.3-14l0-58.4c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 38.6c-11.8-1.5-23.9-2.6-36.2-2.6H250.5c-12.3 0-24.4 1-36.2 2.6L214.3 128c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 58.4c-8 3.9-15.5 8.7-22.3 14L128 160c0-35.3-28.7-64-64-64S0 124.7 0 160s28.7 64 64 64l0 56.4c-11.2 5.6-21.7 12.1-31.3 19.6C12 316.2 0 338.2 0 362.4C0 404 59.9 448 162.1 448h187.8C452.1 448 512 404 512 362.4c0-24.2-12-46.2-32.7-62.4c-9.6-7.5-20.1-13.9-31.3-19.6L448 224c35.3 0 64-28.7 64-64s-28.7-64-64-64zM162.1 400C93.4 400 48 375.4 48 362.4c0-5.7 8.5-19 33.3-33.1c16.3-9.2 38.3-16.7 63.3-21.3L128 320c-17.7 0-32 14.3-32 32s14.3 32 32 32h34.1zm187.8 0H384c17.7 0 32-14.3 32-32s-14.3-32-32-32l-16.6-11.9c25 4.6 47 12.1 63.3 21.3c24.8 14.1 33.3 27.4 33.3 33.1c0 13-45.4 37.6-114.1 37.6zM96 160c0-8.8 7.2-16 16-16s16 7.2 16 16l0 47.3c-11.5 3.5-22.4 8.2-32 14.2L96 160zm320 61.5c-9.6-6-20.5-10.7-32-14.2L384 160c0-8.8 7.2-16 16-16s16 7.2 16 16l0 61.5z'/%3E%3C/svg%3E">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' style='background-color:%231E1E1E'%3E%3Cpath fill='%230070D8' d='M448 96c-35.3 0-64 28.7-64 64l0 40.4c-6.8-5.3-14.3-10-22.3-14l0-58.4c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 38.6c-11.8-1.5-23.9-2.6-36.2-2.6H250.5c-12.3 0-24.4 1-36.2 2.6L214.3 128c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 58.4c-8 3.9-15.5 8.7-22.3 14L128 160c0-35.3-28.7-64-64-64S0 124.7 0 160s28.7 64 64 64l0 56.4c-11.2 5.6-21.7 12.1-31.3 19.6C12 316.2 0 338.2 0 362.4C0 404 59.9 448 162.1 448h187.8C452.1 448 512 404 512 362.4c0-24.2-12-46.2-32.7-62.4c-9.6-7.5-20.1-13.9-31.3-19.6L448 224c35.3 0 64-28.7 64-64s-28.7-64-64-64zM162.1 400C93.4 400 48 375.4 48 362.4c0-5.7 8.5-19 33.3-33.1c16.3-9.2 38.3-16.7 63.3-21.3L128 320c-17.7 0-32 14.3-32 32s14.3 32 32 32h34.1zm187.8 0H384c17.7 0 32-14.3 32-32s-14.3-32-32-32l-16.6-11.9c25 4.6 47 12.1 63.3 21.3c24.8 14.1 33.3 27.4 33.3 33.1c0 13-45.4 37.6-114.1 37.6zM96 160c0-8.8 7.2-16 16-16s16 7.2 16 16l0 47.3c-11.5 3.5-22.4 8.2-32 14.2L96 160zm320 61.5c-9.6-6-20.5-10.7-32-14.2L384 160c0-8.8 7.2-16 16-16s16 7.2 16 16l0 61.5z'/%3E%3C/svg%3E">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -34,11 +28,11 @@
                         panel: '#2C2C2C'
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.3s ease-out',
+                        'fade-in': 'fadeIn 0.4s ease-out',
                     },
                     keyframes: {
                         fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(5px)' },
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
                             '100%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
@@ -51,40 +45,24 @@
             background-color: #121212;
             color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            /* Ajuste crítico para iPhone con Notch */
             padding-top: env(safe-area-inset-top);
             padding-bottom: calc(100px + env(safe-area-inset-bottom));
             -webkit-tap-highlight-color: transparent;
-            /* Evitar rebote elástico */
             overscroll-behavior-y: none;
         }
         .select-btn {
             transition: all 0.2s;
-            border: 1px solid #4a4a4a;
-            background: #2C2C2C;
+            border: 1px solid #3a3a3a;
+            background: #232323;
         }
         .select-btn.active {
             background-color: #0070D8;
             border-color: #0070D8;
             color: white;
-            box-shadow: 0 0 15px rgba(0, 112, 216, 0.4);
-            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(0, 112, 216, 0.4);
+            transform: translateY(-2px);
         }
-        .nav-item.active {
-            color: #0070D8;
-        }
-        .step-line {
-            position: absolute;
-            left: 15px;
-            top: 30px;
-            bottom: -20px;
-            width: 2px;
-            background: #333;
-            z-index: 0;
-        }
-        .step-item:last-child .step-line {
-            display: none;
-        }
+        .nav-item.active { color: #0070D8; }
     </style>
 </head>
 <body>
@@ -94,394 +72,349 @@
         <h1 class="text-lg font-bold flex items-center gap-2">
             <i class="fa-solid fa-drone text-dji"></i> DJI Neo 2
         </h1>
-        <div class="text-xs text-gray-500 font-mono">Ver. 6.0</div>
+        <div class="text-xs text-gray-500 font-mono">Ver. 10.0</div>
     </header>
 
-    <main class="max-w-md mx-auto p-4">
+    <main class="max-w-md mx-auto p-4 space-y-6">
 
         <!-- VISTA 1: CALCULADORA -->
-        <div id="view-calc" class="space-y-5 animate-fade-in">
+        <div id="view-calc" class="space-y-6 animate-fade-in">
             
-            <!-- Pregunta 1: Estabilización -->
-            <div class="space-y-2">
-                <label class="text-gray-400 text-xs uppercase font-bold tracking-wider ml-1">1. Estabilización</label>
-                <div class="grid grid-cols-2 gap-3">
-                    <button onclick="setParam('stabilization', 'internal')" id="btn-stabilization-internal" class="select-btn w-full p-3 rounded-xl text-center">
-                        <i class="fa-solid fa-bolt mb-1 block text-lg text-green-400"></i>
-                        <span class="text-sm font-bold">Rápida</span>
-                        <span class="block text-[10px] text-gray-400">RockSteady</span>
-                    </button>
-                    <button onclick="setParam('stabilization', 'gyroflow')" id="btn-stabilization-gyroflow" class="select-btn w-full p-3 rounded-xl text-center">
-                        <i class="fa-solid fa-computer mb-1 block text-lg text-yellow-400"></i>
-                        <span class="text-sm font-bold">Pro (Gyroflow)</span>
-                        <span class="block text-[10px] text-gray-400">Post-Pro</span>
-                    </button>
+            <!-- Grupo A: Hardware -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 mb-2 px-1">
+                    <span class="text-[10px] uppercase text-dji font-bold tracking-widest">Preparación</span>
+                    <div class="h-px bg-gray-800 flex-1"></div>
                 </div>
-            </div>
 
-            <!-- Pregunta 2: Edición -->
-            <div class="space-y-2">
-                <label class="text-gray-400 text-xs uppercase font-bold tracking-wider ml-1">2. Edición (Color)</label>
-                <div class="grid grid-cols-2 gap-3">
-                    <button onclick="setParam('edit', 'no')" id="btn-edit-no" class="select-btn p-3 rounded-xl flex flex-col items-center">
-                        <span class="text-sm font-bold">Básico (Móvil)</span>
-                        <span class="text-[10px] text-gray-400">LightCut / CapCut</span>
-                    </button>
-                    <button onclick="setParam('edit', 'yes')" id="btn-edit-yes" class="select-btn p-3 rounded-xl flex flex-col items-center">
-                        <span class="text-sm font-bold">Avanzado (PC)</span>
-                        <span class="text-[10px] text-gray-400">DaVinci Resolve</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Pregunta 3: Look -->
-            <div class="space-y-2">
-                <label class="text-gray-400 text-xs uppercase font-bold tracking-wider ml-1">3. Estilo</label>
-                <div class="grid grid-cols-3 gap-2">
-                    <button onclick="setParam('look', 'cinematic')" id="btn-look-cinematic" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
-                        <i class="fa-solid fa-film mb-1"></i>
-                        <span class="text-xs font-bold">Cine 30fps</span>
-                    </button>
-                    <button onclick="setParam('look', 'slowmo')" id="btn-look-slowmo" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
-                        <i class="fa-solid fa-clock mb-1"></i>
-                        <span class="text-xs font-bold">Lenta 60fps</span>
-                    </button>
-                    <button onclick="setParam('look', 'action')" id="btn-look-action" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
-                        <i class="fa-solid fa-jet-fighter mb-1"></i>
-                        <span class="text-xs font-bold">FPV</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Pregunta 4: Luz -->
-            <div class="space-y-2">
-                <label class="text-gray-400 text-xs uppercase font-bold tracking-wider ml-1">4. Luz</label>
-                <div class="grid grid-cols-2 gap-2">
-                    <button onclick="setParam('light', 'sunny')" id="btn-light-sunny" class="select-btn p-2 rounded-xl flex items-center justify-center gap-2 h-12">
-                        <i class="fa-solid fa-sun text-yellow-500"></i>
-                        <span class="text-xs font-bold">Soleado</span>
-                    </button>
-                    <button onclick="setParam('light', 'golden')" id="btn-light-golden" class="select-btn p-2 rounded-xl flex items-center justify-center gap-2 h-12">
-                        <i class="fa-solid fa-sunset text-orange-400"></i>
-                        <span class="text-xs font-bold">Atardecer</span>
-                    </button>
-                    <button onclick="setParam('light', 'cloudy')" id="btn-light-cloudy" class="select-btn p-2 rounded-xl flex items-center justify-center gap-2 h-12">
-                        <i class="fa-solid fa-cloud text-gray-300"></i>
-                        <span class="text-xs font-bold">Nublado</span>
-                    </button>
-                    <button onclick="setParam('light', 'night')" id="btn-light-night" class="select-btn p-2 rounded-xl flex items-center justify-center gap-2 h-12">
-                        <i class="fa-solid fa-moon text-blue-300"></i>
-                        <span class="text-xs font-bold">Noche</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- RESULTADOS RESUMIDOS -->
-            <div id="result-card" class="hidden mt-6 bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-5 border border-gray-700 shadow-xl">
-                <!-- Top Row: ND & Shutter -->
-                <div class="flex justify-between items-start mb-4 border-b border-gray-700 pb-2">
-                    <div>
-                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">Filtro ND</span>
-                        <div id="res-nd" class="text-3xl font-black text-white">ND32</div>
-                    </div>
-                    <div class="text-right">
-                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">Shutter</span>
-                        <div id="res-shutter" class="text-2xl font-bold text-dji">1/60</div>
+                <!-- Q1: Filtros -->
+                <div>
+                    <label class="text-gray-400 text-xs font-bold ml-1 mb-2 block">¿Tienes Filtros ND a mano?</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="setParam('filters', 'yes')" id="btn-filters-yes" class="select-btn p-3 rounded-xl flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-half-stroke text-green-400"></i>
+                            <span class="text-sm font-bold">SÍ, tengo</span>
+                        </button>
+                        <button onclick="setParam('filters', 'no')" id="btn-filters-no" class="select-btn p-3 rounded-xl flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-circle-xmark text-red-400"></i>
+                            <span class="text-sm font-bold">NO tengo</span>
+                        </button>
                     </div>
                 </div>
+
+                <!-- Q2: Estabilización -->
+                <div>
+                    <label class="text-gray-400 text-xs font-bold ml-1 mb-2 block">Estabilización</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="setParam('stabilization', 'internal')" id="btn-stabilization-internal" class="select-btn p-3 rounded-xl">
+                            <span class="text-sm font-bold block">Rápida</span>
+                            <span class="text-[10px] text-gray-400">RockSteady</span>
+                        </button>
+                        <button onclick="setParam('stabilization', 'gyroflow')" id="btn-stabilization-gyroflow" class="select-btn p-3 rounded-xl">
+                            <span class="text-sm font-bold block">Pro (PC)</span>
+                            <span class="text-[10px] text-gray-400">Gyroflow</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grupo B: Creatividad -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 mb-2 px-1 mt-6">
+                    <span class="text-[10px] uppercase text-dji font-bold tracking-widest">Configuración</span>
+                    <div class="h-px bg-gray-800 flex-1"></div>
+                </div>
+
+                <!-- Q3: Estilo (Define FPS) -->
+                <div>
+                    <label class="text-gray-400 text-xs font-bold ml-1 mb-2 block">Tipo de Plano (Look)</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="setParam('look', 'cinematic')" id="btn-look-cinematic" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-14">
+                            <i class="fa-solid fa-film mb-1"></i>
+                            <span class="text-[10px] font-bold">Cine 30p</span>
+                        </button>
+                        <button onclick="setParam('look', 'slowmo')" id="btn-look-slowmo" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-14">
+                            <i class="fa-solid fa-clock mb-1"></i>
+                            <span class="text-[10px] font-bold">Lenta 60p</span>
+                        </button>
+                        <button onclick="setParam('look', 'action')" id="btn-look-action" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-14">
+                            <i class="fa-solid fa-jet-fighter mb-1"></i>
+                            <span class="text-[10px] font-bold">Acción 60p</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Q4: Escenario -->
+                <div>
+                    <label class="text-gray-400 text-xs font-bold ml-1 mb-2 block">Escenario (Entorno)</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button onclick="setParam('scene', 'standard')" id="btn-scene-standard" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-14">
+                            <i class="fa-solid fa-tree mb-1"></i>
+                            <span class="text-[10px] font-bold">Estándar</span>
+                        </button>
+                        <button onclick="setParam('scene', 'snow')" id="btn-scene-snow" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-14">
+                            <i class="fa-regular fa-snowflake mb-1 text-cyan-300"></i>
+                            <span class="text-[10px] font-bold">Nieve/Playa</span>
+                        </button>
+                        <button onclick="setParam('scene', 'dark')" id="btn-scene-dark" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-14">
+                            <i class="fa-solid fa-cloud-moon mb-1 text-gray-400"></i>
+                            <span class="text-[10px] font-bold">Oscuro/Int.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Q5: Luz -->
+                <div>
+                     <label class="text-gray-400 text-xs font-bold ml-1 mb-2 block">Intensidad de Luz</label>
+                     <div class="grid grid-cols-4 gap-2">
+                        <button onclick="setParam('light', 'sunny')" id="btn-light-sunny" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
+                            <i class="fa-solid fa-sun text-yellow-500 mb-1"></i>
+                            <span class="text-[10px] font-bold">Sol</span>
+                        </button>
+                        <button onclick="setParam('light', 'golden')" id="btn-light-golden" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
+                            <i class="fa-solid fa-sunset text-orange-400 mb-1"></i>
+                            <span class="text-[10px] font-bold">Golden</span>
+                        </button>
+                        <button onclick="setParam('light', 'cloudy')" id="btn-light-cloudy" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
+                            <i class="fa-solid fa-cloud text-gray-300 mb-1"></i>
+                            <span class="text-[10px] font-bold">Nube</span>
+                        </button>
+                        <button onclick="setParam('light', 'night')" id="btn-light-night" class="select-btn p-2 rounded-xl flex flex-col items-center justify-center h-16">
+                            <i class="fa-solid fa-moon text-blue-300 mb-1"></i>
+                            <span class="text-[10px] font-bold">Noche</span>
+                        </button>
+                     </div>
+                </div>
+
+                <!-- Q6: Estilo Imagen -->
+                <div class="mt-2">
+                    <label class="text-gray-400 text-xs font-bold ml-1 mb-2 block">Estilo de Imagen (Post-Pro)</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="setParam('edit', 'no')" id="btn-edit-no" class="select-btn p-3 rounded-xl">
+                            <span class="text-sm font-bold block text-white">Directo</span>
+                            <span class="text-[10px] text-gray-400">Colores Vivos</span>
+                        </button>
+                        <button onclick="setParam('edit', 'yes')" id="btn-edit-yes" class="select-btn p-3 rounded-xl">
+                            <span class="text-sm font-bold block text-purple-400">Para Editar</span>
+                            <span class="text-[10px] text-gray-400">Simulación "Log"</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TARJETA RESULTADOS (ACTUALIZADA V10) -->
+            <div id="result-card" class="hidden mt-4 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border border-gray-700 shadow-2xl overflow-hidden relative">
                 
-                <!-- Grid: ISO, WB, FOV, Sharpness -->
-                <div class="grid grid-cols-2 gap-3 text-xs mb-3">
-                    <!-- ISO -->
-                    <div class="bg-black/30 rounded p-2 flex justify-between items-center">
-                        <span class="text-gray-500">ISO</span>
-                        <span id="res-iso" class="font-bold text-white">100</span>
-                    </div>
-                    <!-- WB -->
-                    <div class="bg-black/30 rounded p-2 flex justify-between items-center">
-                        <span class="text-gray-500">WB</span>
-                        <span id="res-wb" class="font-bold text-white">5600K</span>
-                    </div>
-                    <!-- FOV / Aspecto -->
-                    <div class="bg-black/30 rounded p-2 flex justify-between items-center">
-                        <span class="text-gray-500">FOV</span>
-                        <span id="res-aspect" class="font-bold text-yellow-400">16:9</span>
-                    </div>
-                    <!-- Sharpness -->
-                    <div class="bg-black/30 rounded p-2 flex justify-between items-center">
-                        <span class="text-gray-500">Nitidez</span>
-                        <span id="res-sharp" class="font-bold text-purple-400">-2</span>
-                    </div>
+                <div class="bg-black/20 p-3 flex justify-between items-center border-b border-gray-700">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-widest"><i class="fa-solid fa-sliders mr-1"></i> Resultados</span>
+                    <span id="res-fps" class="text-xs font-bold bg-dji px-2 py-1 rounded text-white shadow">30 FPS</span>
                 </div>
 
-                <!-- Barra de Estado de Estabilización -->
-                <div id="res-eis-container" class="bg-gray-800/80 rounded p-2 text-center text-xs border border-gray-700">
-                    Estabilización: <span id="res-eis" class="font-bold text-green-400">RockSteady</span>
-                </div>
-                
-                <div id="gyro-warning" class="mt-3 bg-yellow-900/30 border border-yellow-700/50 p-2 rounded text-[10px] text-yellow-200 hidden flex items-center gap-2">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span><b>Recordatorio:</b> Graba en 4:3 Wide para tener margen de recorte en PC.</span>
+                <div class="p-5">
+                    <!-- FILTRO ND -->
+                    <div class="flex justify-between items-end mb-6">
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase block mb-1">Filtro ND</span>
+                            <div id="res-nd" class="text-4xl font-black text-white tracking-tighter">ND 32</div>
+                        </div>
+                        <div class="text-right">
+                             <span class="text-[10px] text-gray-400 uppercase block mb-1">Shutter (S)</span>
+                             <div id="res-shutter" class="text-2xl font-bold text-dji">1/60</div>
+                             <div id="res-shutter-sub" class="text-[10px] text-red-400 hidden">Auto / Alto</div>
+                        </div>
+                    </div>
+
+                    <!-- BARRA EXPOSÍMETRO (MM) -->
+                    <div class="bg-gray-800 rounded-lg p-3 mb-4 border border-gray-700/50 relative overflow-hidden">
+                        <div class="flex justify-between items-center text-xs mb-1 relative z-10">
+                            <span class="text-gray-400 font-bold">Objetivo MM</span>
+                            <span id="res-mm-text" class="text-green-400 font-mono font-bold">+0.0</span>
+                        </div>
+                        <div class="w-full h-2 bg-gray-700 rounded-full mt-2 relative z-10">
+                            <div class="absolute left-1/2 top-0 bottom-0 w-1 bg-white transform -translate-x-1/2"></div>
+                            <div id="res-mm-bar" class="absolute top-0 bottom-0 bg-green-500/50 transition-all duration-300" style="left: 50%; width: 10%;"></div>
+                        </div>
+                        <!-- TEXTO DE ACCIÓN DINÁMICO V10 -->
+                        <p id="res-mm-action" class="text-[10px] text-yellow-400 mt-2 relative z-10 font-bold">
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                            Gira la rueda hasta llegar al 0.
+                        </p>
+                    </div>
+
+                    <!-- GRID SECUNDARIO -->
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                        <div class="bg-black/20 rounded p-2 border border-gray-700">
+                            <span class="text-gray-500 block text-[9px] uppercase">ISO</span>
+                            <span id="res-iso" class="font-bold text-white">100</span>
+                        </div>
+                        <div class="bg-black/20 rounded p-2 border border-gray-700">
+                            <span class="text-gray-500 block text-[9px] uppercase">WB</span>
+                            <span id="res-wb" class="font-bold text-white">5600K</span>
+                        </div>
+                         <div class="bg-black/20 rounded p-2 border border-gray-700">
+                            <span class="text-gray-500 block text-[9px] uppercase">Nitidez</span>
+                            <span id="res-sharp" class="font-bold text-white">0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
-            <div id="empty-hint" class="text-center py-8 text-gray-600 text-sm">
-                Configura los parámetros para ver los resultados
+            <div id="empty-hint" class="text-center py-10 text-gray-600 text-sm">
+                Configura los pasos para ver la magia ✨
             </div>
 
         </div>
 
-        <!-- VISTA 2: GUÍA DE EDICIÓN (Dynamic) -->
+        <!-- VISTA 2: GUÍA -->
         <div id="view-guide" class="hidden animate-fade-in pb-10">
-            
-            <div id="guide-empty" class="text-center py-20 text-gray-500">
-                <i class="fa-solid fa-sliders text-4xl mb-3 opacity-50"></i>
-                <p>Primero configura tu vuelo en la pestaña anterior.</p>
-                <button onclick="switchTab('calc')" class="mt-4 text-dji font-bold">Ir a Configuración</button>
-            </div>
-
-            <div id="guide-content" class="hidden">
-                <div class="mb-6 bg-card p-4 rounded-xl border-l-4 border-dji">
-                    <h2 class="text-lg font-bold text-white mb-1">Tu Flujo de Trabajo</h2>
-                    <p id="guide-summary" class="text-xs text-gray-400">Resumen dinámico...</p>
-                </div>
-
-                <!-- Step 1: Music -->
-                <div class="step-item relative pl-8 pb-8">
-                    <div class="step-line"></div>
-                    <div class="absolute left-0 top-0 w-8 h-8 bg-panel rounded-full border border-gray-600 flex items-center justify-center z-10">
-                        <i class="fa-solid fa-music text-xs text-dji"></i>
-                    </div>
-                    <h3 class="font-bold text-sm mb-1">1. Selección Musical</h3>
-                    <p class="text-xs text-gray-400 mb-2">Antes de cortar nada, elige la canción.</p>
-                    <div class="bg-panel p-3 rounded-lg text-xs text-gray-300">
-                        <i class="fa-regular fa-lightbulb text-yellow-500 mr-1"></i>
-                        Busca los picos en la onda de audio (Waveform). Pon marcadores (M) en cada golpe fuerte.
-                    </div>
-                </div>
-
-                <!-- Step 2: Import & Gyroflow -->
-                <div class="step-item relative pl-8 pb-8">
-                    <div class="step-line"></div>
-                    <div class="absolute left-0 top-0 w-8 h-8 bg-panel rounded-full border border-gray-600 flex items-center justify-center z-10">
-                        <i class="fa-solid fa-file-import text-xs text-green-400"></i>
-                    </div>
-                    <h3 class="font-bold text-sm mb-1">2. Importación y Estabilización</h3>
-                    <div id="guide-step-2" class="text-xs text-gray-300 space-y-2">
-                        <!-- Dynamic Content -->
-                    </div>
-                </div>
-
-                <!-- Step 3: Editing -->
-                <div class="step-item relative pl-8 pb-8">
-                    <div class="step-line"></div>
-                    <div class="absolute left-0 top-0 w-8 h-8 bg-panel rounded-full border border-gray-600 flex items-center justify-center z-10">
-                        <i class="fa-solid fa-scissors text-xs text-blue-400"></i>
-                    </div>
-                    <h3 class="font-bold text-sm mb-1">3. Montaje y Ritmo</h3>
-                    <div id="guide-step-3" class="text-xs text-gray-300 space-y-2">
-                         <!-- Dynamic Content -->
-                    </div>
-                </div>
-
-                <!-- Step 4: Color -->
-                <div class="step-item relative pl-8 pb-8">
-                    <div class="step-line"></div>
-                    <div class="absolute left-0 top-0 w-8 h-8 bg-panel rounded-full border border-gray-600 flex items-center justify-center z-10">
-                        <i class="fa-solid fa-palette text-xs text-purple-400"></i>
-                    </div>
-                    <h3 class="font-bold text-sm mb-1">4. Color y Finalización</h3>
-                    <div id="guide-step-4" class="text-xs text-gray-300 space-y-2">
-                         <!-- Dynamic Content -->
-                    </div>
-                </div>
+            <div class="bg-card p-5 rounded-xl border-l-4 border-dji">
+                 <h2 class="font-bold text-lg mb-2">Consejos Rápidos</h2>
+                 <ul class="text-xs space-y-3 text-gray-300 list-disc ml-4">
+                     <li><b>Sobre el MM:</b> Es tu "juez". Si no marca lo que dice el objetivo, cambia lo que tengas a mano (Filtro o Rueda de velocidad).</li>
+                     <li><b>Golden Hour:</b> Al elegir "Golden", el WB se pone en 6500K para potenciar el naranja del atardecer. No lo bajes.</li>
+                     <li><b>Nieve/Playa:</b> Reflejan mucha luz. Busca un MM de +1.0 para que la nieve sea blanca y no gris.</li>
+                 </ul>
             </div>
         </div>
 
     </main>
 
-    <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 w-full bg-[#1a1a1a] border-t border-gray-800 flex justify-around py-3 pb-safe z-50">
+    <!-- Bottom Nav -->
+    <nav class="fixed bottom-0 left-0 w-full bg-[#161616] border-t border-gray-800 flex justify-around py-3 pb-safe z-50">
         <button onclick="switchTab('calc')" id="nav-calc" class="nav-item active flex flex-col items-center w-1/2 text-gray-500 hover:text-white transition py-2">
             <i class="fa-solid fa-sliders text-xl mb-1"></i>
-            <span class="text-[10px] font-bold uppercase">Configuración</span>
+            <span class="text-[10px] font-bold uppercase">Ajustes</span>
         </button>
         <button onclick="switchTab('guide')" id="nav-guide" class="nav-item flex flex-col items-center w-1/2 text-gray-500 hover:text-white transition py-2">
             <i class="fa-solid fa-list-check text-xl mb-1"></i>
-            <span class="text-[10px] font-bold uppercase">Guía Edición</span>
+            <span class="text-[10px] font-bold uppercase">Tips</span>
         </button>
     </nav>
 
     <script>
-        // ESTADO GLOBAL
-        const state = {
-            stabilization: null,
-            edit: null,
-            look: null,
-            light: null
-        };
+        const state = { filters: null, stabilization: null, look: null, scene: null, light: null, edit: null };
 
-        // --- NAVEGACIÓN ---
-        function switchTab(tabName) {
-            // UI Update
+        function switchTab(tab) {
             document.getElementById('view-calc').classList.add('hidden');
             document.getElementById('view-guide').classList.add('hidden');
             document.getElementById('nav-calc').classList.remove('active', 'text-dji');
             document.getElementById('nav-guide').classList.remove('active', 'text-dji');
-
-            document.getElementById(`view-${tabName}`).classList.remove('hidden');
-            document.getElementById(`nav-${tabName}`).classList.add('active', 'text-dji');
-
-            // Renderizar guía si cambiamos a ella
-            if (tabName === 'guide') renderGuide();
+            
+            document.getElementById(`view-${tab}`).classList.remove('hidden');
+            document.getElementById(`nav-${tab}`).classList.add('active', 'text-dji');
         }
 
-        // --- LÓGICA CALCULADORA ---
         function setParam(key, value) {
             state[key] = value;
-            
-            // Actualizar botones UI
             document.querySelectorAll(`[id^="btn-${key}-"]`).forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${key}-${value}`).classList.add('active');
+            const btn = document.getElementById(`btn-${key}-${value}`);
+            if(btn) btn.classList.add('active');
 
-            // Calcular resultados si todo está lleno
-            if (state.stabilization && state.edit && state.look && state.light) {
-                calculateResults();
+            if (state.filters && state.stabilization && state.look && state.scene && state.light && state.edit) {
+                calculate();
             }
         }
 
-        function calculateResults() {
+        function calculate() {
             document.getElementById('empty-hint').classList.add('hidden');
             const card = document.getElementById('result-card');
             card.classList.remove('hidden');
-            card.classList.remove('animate-fade-in'); // Reset animation
-            void card.offsetWidth; // Trigger reflow
-            card.classList.add('animate-fade-in');
 
-            // 1. ND Filter
+            // --- 1. FPS ---
+            const fpsElem = document.getElementById('res-fps');
+            fpsElem.innerText = (state.look === 'cinematic') ? "30 FPS" : "60 FPS";
+
+            // --- 2. ESCENA & MM TARGET ---
+            const mmText = document.getElementById('res-mm-text');
+            const mmBar = document.getElementById('res-mm-bar');
+            
+            let targetMM = "0.0 a +0.3";
+            
+            if (state.scene === 'snow') {
+                targetMM = "+0.7 a +1.0";
+                mmBar.style.left = "60%"; mmBar.style.width = "20%"; // Shift right
+            } else if (state.scene === 'dark') {
+                targetMM = "-0.3 a 0.0";
+                mmBar.style.left = "45%"; mmBar.style.width = "15%"; // Slightly left
+            } else {
+                targetMM = "0.0 a +0.3";
+                mmBar.style.left = "50%"; mmBar.style.width = "10%"; // Center
+            }
+            mmText.innerText = targetMM;
+
+            // --- 3. ACCIÓN MM (TEXTO DINÁMICO V10) ---
+            const mmAction = document.getElementById('res-mm-action');
+            if (state.filters === 'yes') {
+                // Si tengo filtros, la acción es cambiar filtro
+                mmAction.innerHTML = `<i class="fa-solid fa-filter mr-1"></i> Si marca más de ${targetMM}, pon un filtro más oscuro (ND más alto).`;
+            } else {
+                // Si NO tengo filtros, la acción es mover rueda
+                mmAction.innerHTML = `<i class="fa-solid fa-fingerprint mr-1"></i> Gira la rueda de velocidad (Shutter) hasta que marque ${targetMM}.`;
+            }
+
+            // --- 4. ND FILTER & SHUTTER & WB ---
             const ndElem = document.getElementById('res-nd');
-            if (state.light === 'sunny') ndElem.innerText = state.look === 'slowmo' ? "ND16" : "ND32";
-            else if (state.light === 'golden' || state.light === 'cloudy') ndElem.innerText = state.look === 'slowmo' ? "ND4/8" : "ND8/16";
-            else ndElem.innerText = "Ninguno";
-
-            // 2. Shutter
             const shutterElem = document.getElementById('res-shutter');
-            if (state.look === 'action') shutterElem.innerText = "Auto";
-            else shutterElem.innerText = state.look === 'slowmo' ? "1/120" : "1/60";
-
-            // 3. ISO
-            const isoElem = document.getElementById('res-iso');
-            isoElem.innerText = state.light === 'night' ? "400-800" : "100";
-
-            // 4. WB
+            const shutterSub = document.getElementById('res-shutter-sub');
             const wbElem = document.getElementById('res-wb');
-            if (state.light === 'golden') wbElem.innerText = "6500K";
-            else if (state.light === 'cloudy') wbElem.innerText = "6500K";
-            else if (state.light === 'night') wbElem.innerText = "3200-4000K";
-            else wbElem.innerText = "5600K";
 
-            // 5. Sharpness (Fake Log Logic)
+            let shutterSpeed = (state.look === 'cinematic') ? "1/60" : "1/120";
+
+            // Lógica WB
+            if (state.light === 'golden') wbElem.innerText = "6500K"; // Cálido forzado
+            else if (state.light === 'cloudy') wbElem.innerText = "6500K";
+            else if (state.light === 'night') wbElem.innerText = "Auto";
+            else wbElem.innerText = "5600K"; // Sunny
+
+            // Lógica Filtros
+            if (state.filters === 'yes') {
+                shutterSub.classList.add('hidden');
+                shutterElem.classList.remove('text-yellow-400');
+                shutterElem.classList.add('text-dji');
+                shutterElem.innerText = shutterSpeed;
+
+                if (state.light === 'sunny') {
+                    ndElem.innerText = (state.scene === 'snow') ? "ND 64" : "ND 32";
+                } else if (state.light === 'golden' || state.light === 'cloudy') {
+                    ndElem.innerText = "ND 8 / 16";
+                } else {
+                    ndElem.innerText = "NINGUNO"; // Noche
+                }
+
+            } else {
+                ndElem.innerText = "NINGUNO";
+                shutterElem.classList.remove('text-dji');
+                shutterElem.classList.add('text-yellow-400');
+                shutterSub.classList.remove('hidden');
+
+                if (state.light === 'sunny') {
+                    shutterElem.innerText = "Ajustar"; 
+                    shutterSub.innerText = "Alta velocidad";
+                } else if (state.light === 'night') {
+                    shutterElem.innerText = "1/60";
+                    shutterSub.classList.add('hidden');
+                } else {
+                    shutterElem.innerText = "Ajustar"; 
+                    shutterSub.innerText = "Variable";
+                }
+            }
+
+            // --- 5. ISO ---
+            const isoElem = document.getElementById('res-iso');
+            isoElem.innerText = (state.scene === 'dark' || state.light === 'night') ? "Auto (Max 800)" : "100";
+
+
+            // --- 6. EDITO COLOR (SHARPNESS) ---
             const sharpElem = document.getElementById('res-sharp');
             if (state.edit === 'yes') {
-                sharpElem.innerText = "-2 / -1";
+                sharpElem.innerText = "-2";
                 sharpElem.className = "font-bold text-purple-400";
             } else {
-                sharpElem.innerText = "0 (Std)";
-                sharpElem.className = "font-bold text-gray-300";
+                sharpElem.innerText = "0";
+                sharpElem.className = "font-bold text-white";
             }
-
-            // 6. FOV & EIS (NEW LOGIC)
-            const aspectElem = document.getElementById('res-aspect');
-            const eisElem = document.getElementById('res-eis');
-            
-            if (state.stabilization === 'internal') {
-                aspectElem.innerText = "16:9 (Norm)";
-                aspectElem.className = "font-bold text-white";
-                
-                eisElem.innerText = "RockSteady ON";
-                eisElem.className = "font-bold text-green-400";
-            } else {
-                aspectElem.innerText = "4:3 (Wide)";
-                aspectElem.className = "font-bold text-yellow-400";
-
-                eisElem.innerText = "EIS OFF / Wide";
-                eisElem.className = "font-bold text-red-400";
-            }
-
-            // 7. Gyro Warning
-            const gyroWarn = document.getElementById('gyro-warning');
-            if (state.stabilization === 'gyroflow') gyroWarn.classList.remove('hidden');
-            else gyroWarn.classList.add('hidden');
         }
-
-        // --- LÓGICA GUÍA DINÁMICA ---
-        function renderGuide() {
-            if (!state.stabilization || !state.edit || !state.look || !state.light) {
-                document.getElementById('guide-empty').classList.remove('hidden');
-                document.getElementById('guide-content').classList.add('hidden');
-                return;
-            }
-
-            document.getElementById('guide-empty').classList.add('hidden');
-            document.getElementById('guide-content').classList.remove('hidden');
-
-            // Actualizar textos
-            const summary = document.getElementById('guide-summary');
-            const step2 = document.getElementById('guide-step-2');
-            const step3 = document.getElementById('guide-step-3');
-            const step4 = document.getElementById('guide-step-4');
-
-            // Summary
-            summary.innerHTML = `Vuelo <b>${state.look.toUpperCase()}</b> con luz <b>${state.light.toUpperCase()}</b>. Edición en <b>${state.edit === 'yes' ? 'DaVinci' : 'Móvil'}</b>.`;
-
-            // Step 2: Import
-            let s2html = "";
-            if (state.edit === 'no') {
-                s2html += `<p>• Usa <b>QuickTransfer</b> para pasar clips al móvil por Wi-Fi.</p>`;
-                s2html += `<p>• Abre LightCut o CapCut.</p>`;
-            } else {
-                s2html += `<p>• Copia archivos de la SD al PC.</p>`;
-                if (state.stabilization === 'gyroflow') {
-                    s2html += `<p class="text-yellow-400">• <b>IMPORTANTE:</b> Pasa primero por Gyroflow. Sync automático. Exporta en ProRes o DNxHR.</p>`;
-                } else {
-                    s2html += `<p>• Importa directamente a DaVinci Resolve (Media Page).</p>`;
-                }
-                s2html += `<p>• Genera "Proxy Media" si tu PC va lento.</p>`;
-            }
-            step2.innerHTML = s2html;
-
-            // Step 3: Edit
-            let s3html = "";
-            if (state.look === 'slowmo') {
-                s3html += `<p class="text-dji font-bold">• Truco 60fps:</p>`;
-                if (state.edit === 'yes') s3html += `<p>Clip Attributes -> Cambiar Frame Rate a 30fps. (Cámara lenta instantánea y fluida).</p>`;
-                else s3html += `<p>En CapCut: Velocidad -> 0.5x (Normal) o Curvas (Rampas).</p>`;
-            } else {
-                s3html += `<p>• Corta siempre EN MOVIMIENTO. No dejes planos estáticos.</p>`;
-                s3html += `<p>• Usa J-Cuts: Que el audio del siguiente clip empiece antes que el vídeo.</p>`;
-            }
-            if (state.look === 'action') {
-                s3html += `<p>• Cortes rápidos (0.5s - 2s). Sincroniza con golpes de batería.</p>`;
-            }
-            step3.innerHTML = s3html;
-
-            // Step 4: Color
-            let s4html = "";
-            if (state.edit === 'yes') {
-                s4html += `<p class="text-purple-400 font-bold">• Flujo DaVinci (Recuperar Sharpness):</p>`;
-                s4html += `<ul class="list-decimal ml-4 space-y-1">`;
-                s4html += `<li><b>Nodo 1:</b> Reducción Ruido (Temporal: 2 frames).</li>`;
-                s4html += `<li><b>Nodo 2:</b> Exposición (Lift/Gamma/Gain).</li>`;
-                s4html += `<li><b>Nodo 3:</b> Contraste (Curva en S).</li>`;
-                s4html += `<li><b>Nodo 4 (CLAVE):</b> Efecto "Blur/Sharpen". Baja el radio a 0.48 para recuperar la nitidez que quitamos (-2) en el dron.</li>`;
-                s4html += `</ul>`;
-            } else {
-                s4html += `<p>• Aplica un filtro suave (ej. "Teal & Orange" o "Nature") al 30-40% de intensidad.</p>`;
-                s4html += `<p>• Añade un poco de "Sharpen" (Nitidez) en la app, ya que grabamos con la nitidez baja.</p>`;
-            }
-            step4.innerHTML = s4html;
-        }
-
     </script>
 </body>
 </html>
